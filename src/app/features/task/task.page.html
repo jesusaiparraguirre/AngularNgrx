@@ -1,0 +1,48 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+                
+                <h5 class="fw-bold mb-2 text-uppercase mb-5">Usuario {{nameUser}}</h5>
+                <div class="container-title mb-3">
+                    <h2 class="fw-bold mb-2 text-uppercase">Lista de tareas</h2>
+                    <button (click)="logout()" class="btn btn-light btn-sm" ><i class="bi bi-box-arrow-in-right"></i>
+                    </button>
+                </div>
+                
+                <form (ngSubmit)="onSubmit()" [formGroup]="taskForm">
+                <div style="display: flex;">
+                    <p class="text-white-50 m-0 mt-1 mr-10">Tarea:</p>
+                    <div class="form-outline form-white mr-10">
+                        <input #taskinput type="email" formControlName="task" class="form-control form-control-sm" />
+                    </div>
+                    <button class="btn btn-light btn-sm" type="submit">Agregar</button>
+                    
+                </div>
+                </form>
+                <ul class="list-group mt-5">
+                    <li *ngFor="let i of tasks" class="list-group-item">
+                        <input type="checkbox" class="form-check-input"  [(ngModel)]="i.active"> 
+                        {{i.name}} 
+                        <button class="btn btn-dark btn-sm btn-delete" (click)="deleteTask(i.id)" *ngIf="!i.active"><i class="bi bi-x-circle"></i></button>
+                    </li>
+                </ul>
+                <h2 *ngIf="tasks.length === 0" class="fw-bold mb-2 text-center">No hay tareas</h2>
+
+              
+  
+  
+              </div>
+  
+              
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
